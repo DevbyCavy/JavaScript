@@ -13,60 +13,89 @@
     <p>Rock Paper Scissors</p>
 
     <button onclick="
-
-        const computerMove = pickComputerMove();
-
-        console.log(computerMove);
-
-        if (computerMove === 'rock'){
-            result = 'Tie';
-        }else if(computerMove === 'paper'){
-            result = 'You Win';
-        }else if(computerMove === 'scissors'){
-            result = 'You Lose';
-        }
-
-        alert(`You picked rock. Computer picked ${computerMove}. ${result}`);
-
+        playGame('rock');
     ">Rock</button>
 
     <button onclick="
-        
-
-        const computerMove = pickComputerMove();
-
-        if (computerMove === 'rock'){
-            result = 'You Win';
-        }else if(computerMove === 'paper'){
-            result = 'Tie';
-        }else if(computerMove === 'scissors'){
-            result = 'You Lose';
-        }
-
-        alert(`You picked paper. Computer picked ${computerMove}. ${result}`);
-
-
+        playGame('paper');
     ">Paper</button>
 
     <button onclick="
-        const computerMove = pickComputerMove();
-
-        console.log(computerMove);
-
-        if (computerMove === 'rock'){
-            result = 'You Lose';
-        }else if(computerMove === 'paper'){
-            result = 'You Win';
-        }else if(computerMove === 'scissors'){
-            result = 'Tie';
-        }
-
-        alert(`You picked Scissors. Computer picked ${computerMove}. ${result}`);
-
-    
+        playGame('scissors');
     ">Scissors</button>
 
+    <button onclick="
+        record.wins = 0;
+        record.loses = 0;
+        record.draws = 0;
+        localStorage.removeItem('record');
+    ">Reset</button>
+
     <script>
+        let record = JSON.parse(localStorage.getItem('record')) || {
+            wins: 0,
+            loses: 0,
+            draws: 0
+        };   
+
+        /*
+        if (record === null) {
+            record = {
+                wins: 0,
+                loses: 0,
+                draws: 0
+            };       
+        }
+        */
+
+        function playGame(playerMove){
+            const computerMove = pickComputerMove();
+
+            let result = '';
+
+            if (playerMove === 'scissors'){
+                if (computerMove === 'rock'){
+                    result = 'You Lose';
+                }else if(computerMove === 'paper'){
+                    result = 'You Win';
+                }else if(computerMove === 'scissors'){
+                    result = 'Tie';
+                }
+
+            } else if (playerMove === 'paper'){
+                if (computerMove === 'rock'){
+                    result = 'You Win';
+                }else if(computerMove === 'paper'){
+                    result = 'Tie';
+                }else if(computerMove === 'scissors'){
+                    result = 'You Lose';
+                }
+
+            } else if (playerMove === 'rock'){
+                if (computerMove === 'rock'){
+                    result = 'Tie';
+                }else if(computerMove === 'paper'){
+                    result = 'You Win';
+                }else if(computerMove === 'scissors'){
+                    result = 'You Lose';
+                }
+            }
+
+            if (result === 'You Win'){
+                record.wins += 1;
+            }else if (result === 'You Lose'){
+                record.loses += 1;
+            }else if (result === 'Tie'){
+                record.draws += 1;
+            }
+
+            localStorage.setItem('record', JSON.stringify(record));
+
+        alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}
+Wins: ${record.wins}, Loses: ${record.loses}, Draw: ${record.draws}`);
+        }
+
+
         function pickComputerMove(){
 
             let randomNumber = Math.random();
