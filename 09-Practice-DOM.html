@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Calculator</title>
+</head>
+
+<body>
+  <p>CALCULATOR</p>
+  <input placeholder="Enter first value"             class="js-first-value-input"
+  onkeydown="
+    handleAnswerKeyDown(event);
+  "
+  >
+  <input placeholder="Enter second value" class="js-second-value-input"
+  onkeydown="
+    handleAnswerKeyDown(event);
+  ">
+  <button class="js-total-cost" onclick="
+    calculateTotal();
+  ">ADD</button>
+
+  <p class="js-answer-display"></p>
+
+  <script>
+    function handleAnswerKeyDown(event){
+      if(event.key === 'Enter'){
+        calculateTotal();
+      }
+    }
+
+    function calculateTotal(){
+      const inputElement = document.querySelector('.js-first-value-input');
+      const inputElement01 = document.querySelector('.js-second-value-input');
+
+      let value01 = Number(inputElement.value);
+      let value02 = Number(inputElement01.value)
+
+      if(inputElement === ''){
+        value01 = 0
+      }else if(inputElement01 === ''){
+        value02 = 0;
+      }
+      let total = value01 + value02;
+
+      document.querySelector('.js-answer-display').innerHTML = `Answer is ${total}`;
+    }
+
+  </script>
+
+</body>
+</html>
