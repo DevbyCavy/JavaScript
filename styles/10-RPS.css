@@ -1,0 +1,47 @@
+body{
+    background-color: rgb(25, 25, 25);
+    color: white;
+    padding: 10px;
+    font-family: Arial;
+    font-weight: bold;
+}
+.title{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.signBtn{
+    background-color: transparent;
+    border: 3px solid white;
+    border-radius: 60px;
+    width: 120px;
+    height: 120px;
+    margin-right: 10px;
+    cursor: pointer;
+
+}
+
+img{
+    height: 50px;
+}
+
+.js-result{
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 50px;
+}
+
+.js-moves{
+    margin-top: 60px;
+}
+
+.js-record{
+    margin-top: 40px;
+}
+
+.reset-record-btn{
+    font-size: 15px;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+}
