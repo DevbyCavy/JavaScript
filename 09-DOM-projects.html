@@ -4,11 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DOM Projects</title>
+
+  <style>
+    body{
+        font-family: arial;
+    }
+    .js-subscribe-btn{
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .js-cost-input{
+        padding: 10px 15px;
+        font-size: 15px;
+        border-radius: 3px;
+    }
+    .js-cost{
+        padding: 12px 15px;
+        border: none;
+        background-color: green;
+        color: white;
+    }
+    .is-subscribed{
+        background-color: rgb(240, 240, 240);
+        color: black;
+    }
+  </style>
 </head>
 
 <body>
     <p>Youtube Subscribe Button</p>
-    <button  onclick="
+    <button onclick="
         subscribe();
     " class="js-subscribe-btn"
     >Subscribe</button>
@@ -58,8 +89,10 @@
 
         if(btnElement.innerText === 'Subscribe'){
             btnElement.innerHTML = 'Subscribed';
+            btnElement.classList.add('is-subscribed');
         } else {
             btnElement.innerHTML = 'Subscribe';
+            btnElement.classList.remove('is-subscribed');
         }
     }
   </script>
